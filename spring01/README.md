@@ -204,4 +204,28 @@ public class Test {
 
 翻译过来就是：从类路径资源[applicationContext.xml]加载XML中定义的bean
 
+接下来进行测试2，使用BeanFactory
+```java
+public class Test {
+
+	public static void main(String[] args) {
+//		TestDao dao = new TestDaoImpl();
+//		String s = dao.sayHello();
+//		System.out.println(s);
+
+
+//		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+//		TestDao testDao = applicationContext.getBean("testDao", TestDao.class);
+//		String s = testDao.sayHello();
+//		System.out.println(s);
+
+
+		BeanFactory beanFactory = new XmlBeanFactory(new FileSystemResource(new File("G:\\WorkProjeckts\\IdeaProjects\\spring\\spring01\\src\\main\\resources\\applicationContext.xml")));
+		TestDao testDao = beanFactory.getBean("testDao", TestDao.class);
+		System.out.println(testDao.sayHello());
+	}
+```
+ApplicationContext是BeanFactory的一个实现类，BeanFactory实例需要提供xml的绝对路径，开发时更加推荐使用ApplicationContext
+
+
 自此，我们的第一步，创建项目就完成了
